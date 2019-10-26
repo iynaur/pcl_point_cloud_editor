@@ -55,7 +55,7 @@ Statistics::getStats()
   }
     
   if (result.empty())
-    return ("Please load your cloud.");
+    return ("请载入点云文件.");
   return (result);
 }
 

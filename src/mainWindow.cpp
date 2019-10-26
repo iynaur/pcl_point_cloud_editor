@@ -139,47 +139,47 @@ MainWindow::createActions ()
 
   QString icon_path(":/");
 
-  open_action_ = new QAction(QIcon(icon_path+"open.png"),tr("Open..."),this);
+  open_action_ = new QAction(QIcon(icon_path+"open.png"),tr("打开..."),this);
   open_action_ -> setShortcut(tr("Ctrl+O"));
   connect(open_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(load()));
 
-  save_action_ = new QAction(QIcon(icon_path+"save.png"), tr("Save as.."),
+  save_action_ = new QAction(QIcon(icon_path+"save.png"), tr("另存为.."),
                              this);
   save_action_ -> setShortcut(tr("Ctrl+S"));
   connect(save_action_,SIGNAL(triggered()),cloud_editor_widget_,SLOT(save()));
 
-  exit_action_ = new QAction(tr("Exit..."), this);
+  exit_action_ = new QAction(tr("退出..."), this);
   exit_action_ -> setShortcut(tr("Ctrl+Q"));
   connect(exit_action_, SIGNAL(triggered()), this, SLOT(close()));
 
-  about_action_ = new QAction(tr("About"), this);
+  about_action_ = new QAction(tr("关于"), this);
   connect(about_action_, SIGNAL(triggered()), this, SLOT(about()));
 
-  help_action_ = new QAction(tr("Keyboard/Mouse Control"), this);
+  help_action_ = new QAction(tr("键盘/鼠标控制"), this);
   connect(help_action_, SIGNAL(triggered()), this, SLOT(help()));
 
-  copy_action_ = new QAction(QIcon(icon_path+"copy.png"), tr("Copy"),
+  copy_action_ = new QAction(QIcon(icon_path+"copy.png"), tr("拷贝"),
                              action_group_);
   copy_action_ -> setShortcut(tr("Ctrl+C"));
   connect(copy_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(copy()));
   copy_action_->setCheckable(false);
 
-  delete_action_ = new QAction(QIcon(icon_path+"delete.png"), tr("Delete"),
+  delete_action_ = new QAction(QIcon(icon_path+"delete.png"), tr("删除"),
                                action_group_);
   delete_action_ -> setShortcut(tr("D"));
   connect(delete_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(remove()));
   delete_action_->setCheckable(false);
 
-  cut_action_ = new QAction(QIcon(icon_path+"cut.png"), tr("Cut"),
+  cut_action_ = new QAction(QIcon(icon_path+"cut.png"), tr("剪切"),
                             action_group_);
   cut_action_ -> setShortcut(tr("Ctrl+X"));
   connect(cut_action_, SIGNAL(triggered()), cloud_editor_widget_,SLOT(cut()));
   cut_action_ -> setCheckable(false);
 
-  paste_action_ = new QAction(QIcon(icon_path+"paste.png"), tr("Paste"),
+  paste_action_ = new QAction(QIcon(icon_path+"paste.png"), tr("粘贴"),
                               action_group_);
   paste_action_ -> setShortcut(tr("Ctrl+V"));
   connect(paste_action_, SIGNAL(triggered()), cloud_editor_widget_,
@@ -192,7 +192,7 @@ MainWindow::createActions ()
   toggle_blend_action_->setCheckable(true);
   toggle_blend_action_->setChecked(false);
 
-  view_action_ = new QAction(QIcon(icon_path+"view.png"), tr("View"),
+  view_action_ = new QAction(QIcon(icon_path+"view.png"), tr("查看"),
                              action_group_);
   view_action_ -> setShortcut(tr("V"));
   connect(view_action_, SIGNAL(triggered()), cloud_editor_widget_,
@@ -201,14 +201,14 @@ MainWindow::createActions ()
   view_action_->setChecked(true);
 
   undo_action_ = new QAction(QIcon(icon_path+"undo.png"),
-                                   tr("Undo"), action_group_);
+                                   tr("撤销"), action_group_);
   undo_action_ -> setShortcut(tr("Ctrl+Z"));
   connect(undo_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(undo()));
   undo_action_->setCheckable(false);
 
   transform_action_ = new QAction(QIcon(icon_path+"move.png"),
-                                  tr("Transform Selection"), action_group_);
+                                  tr("变换选择"), action_group_);
   transform_action_ -> setShortcut(tr("T"));
   connect(transform_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(transform()));
@@ -220,20 +220,20 @@ MainWindow::createActions ()
           SLOT(denoise()));
 
   select_action_ = new QAction(QIcon(icon_path+"click.png"),
-                               tr("Point Selection"), action_group_);
+                               tr("点选"), action_group_);
   select_action_->setShortcut(tr("E"));
   connect(select_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(select1D()));
   select_action_->setCheckable(true);
 
   invert_select_action_ = new QAction(QIcon(icon_path+"invert.png"),
-                                      tr("Invert Selection"), action_group_);
+                                      tr("反选"), action_group_);
   connect(invert_select_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(invertSelect()));
   invert_select_action_->setCheckable(false);
 
   select_2D_action_ = new QAction(QIcon(icon_path+"select.png"),
-                                  tr("Rubberband Selection"), action_group_);
+                                  tr("框选"), action_group_);
   select_2D_action_->setShortcut(tr("S"));
   connect(select_2D_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(select2D()));
@@ -247,7 +247,7 @@ MainWindow::createActions ()
   //select_3D_action_->setCheckable(true);
 
   show_stat_action_ = new QAction(QIcon(icon_path+"info.png"),
-                      tr("Show statistics"), action_group_);
+                      tr("显示统计"), action_group_);
   connect(show_stat_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(showStat()));
   show_stat_action_->setCheckable(false);
@@ -264,7 +264,7 @@ MainWindow::createMenus ()
   file_menu_ -> addSeparator();
   file_menu_ -> addAction(exit_action_);
 
-  edit_menu_ = new QMenu(tr("&Edit"), this);
+  edit_menu_ = new QMenu(tr("&编辑"), this);
 //  edit_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   edit_menu_ -> addAction(undo_action_);
   edit_menu_ -> addSeparator();
@@ -275,26 +275,26 @@ MainWindow::createMenus ()
   edit_menu_ -> addSeparator();
   edit_menu_ -> addAction(transform_action_);
 
-  select_menu_ = new QMenu(tr("&Select"), this);
+  select_menu_ = new QMenu(tr("&选择"), this);
  // select_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   select_menu_ -> addAction(select_action_);
   select_menu_ -> addAction(select_2D_action_);
   //select_menu_ -> addAction(select_3D_action_);
 
-  display_menu_ = new QMenu(tr("&Display"), this);
+  display_menu_ = new QMenu(tr("&显示"), this);
 //  display_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   display_menu_ -> addAction(toggle_blend_action_);
 
-  view_menu_ = new QMenu(tr("&View"), this);
+  view_menu_ = new QMenu(tr("&查看"), this);
 //  view_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   view_menu_ -> addAction(view_action_);
   view_menu_ -> addAction(show_stat_action_);
 
-  tool_menu_ = new QMenu(tr("&Algorithm"), this);
+  tool_menu_ = new QMenu(tr("&算法"), this);
 //  tool_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   tool_menu_ -> addAction(denoise_action_);
 
-  help_menu_ = new QMenu(tr("&Help"), this);
+  help_menu_ = new QMenu(tr("&帮助"), this);
 //  help_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   help_menu_ -> addAction(about_action_);
   help_menu_ -> addAction(help_action_);
@@ -312,24 +312,24 @@ MainWindow::createToolBars ()
 {
   createSpinBoxes();
   createSliders();
-  view_tool_bar_ = addToolBar(tr("File"));
+  view_tool_bar_ = addToolBar(tr("文件"));
   view_tool_bar_ -> addAction(open_action_);
   view_tool_bar_ -> addAction(save_action_);
-  view_tool_bar_ = addToolBar(tr("View"));
+  view_tool_bar_ = addToolBar(tr("查看"));
   view_tool_bar_ -> addAction(view_action_);
   view_tool_bar_ -> addAction(select_action_);
   view_tool_bar_ -> addAction(select_2D_action_);
   //view_tool_bar_ -> addAction(select_3D_action_);
   view_tool_bar_ -> addAction(invert_select_action_);
-  QLabel *ptSizeLabel = new QLabel(tr("Point Size:"));
+  QLabel *ptSizeLabel = new QLabel(tr("点大小:"));
   ptSizeLabel -> setAttribute(Qt::WA_DeleteOnClose);
   view_tool_bar_ -> addWidget(ptSizeLabel);
   view_tool_bar_ -> addWidget(point_size_spin_box_);
-  QLabel *selectedPtSizeLabel = new QLabel(tr("Selected Point Size:"));
+  QLabel *selectedPtSizeLabel = new QLabel(tr("所选点大小:"));
   selectedPtSizeLabel -> setAttribute(Qt::WA_DeleteOnClose);
   view_tool_bar_ -> addWidget(selectedPtSizeLabel);
   view_tool_bar_ -> addWidget(selected_point_size_spin_box_);
-  edit_tool_bar_ = addToolBar(tr("Edit"));
+  edit_tool_bar_ = addToolBar(tr("编辑"));
   edit_tool_bar_ -> addAction(undo_action_);
   edit_tool_bar_ -> addAction(copy_action_);
   edit_tool_bar_ -> addAction(cut_action_);
