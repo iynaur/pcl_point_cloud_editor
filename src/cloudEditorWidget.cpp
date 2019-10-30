@@ -300,6 +300,27 @@ CloudEditorWidget::transform ()
 }
 
 void
+CloudEditorWidget::zoom()
+{
+    if (!cloud_ptr_)
+      return;
+    tool_ptr_ = boost::shared_ptr<CloudTransformTool>(
+                new CloudTransformTool(cloud_ptr_));
+    tool_ptr_->zoom();
+}
+void
+CloudEditorWidget::move()
+{
+
+    if (!cloud_ptr_)
+      return;
+    tool_ptr_ = boost::shared_ptr<CloudTransformTool>(
+                new CloudTransformTool(cloud_ptr_));
+    tool_ptr_->move();
+}
+
+
+void
 CloudEditorWidget::denoise ()
 {
   if (!cloud_ptr_)
@@ -381,6 +402,8 @@ CloudEditorWidget::setPointSize (int size)
   cloud_ptr_->setPointSize(size);
   update();
 }
+
+
 
 void
 CloudEditorWidget::setSelectedPointSize (int size)

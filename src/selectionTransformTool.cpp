@@ -87,7 +87,7 @@ SelectionTransformTool::update (int x, int y, BitMask, BitMask buttons)
     return;
   trackball_.update(x, y);
 
-  if (modifiers_ & CTRL)
+  if (modifiers_ & isMove)
   {
     // selection motion is not applied directly (waits for end)
     // as such we can not update x and y immediately
@@ -97,7 +97,7 @@ SelectionTransformTool::update (int x, int y, BitMask, BitMask buttons)
                                          0.0f);
     return;
   }
-  if (modifiers_ & ALT)
+  if (modifiers_ & isScale)
   {
     // selection motion is not applied directly (waits for end)
     // as such we can not update x and y immediately
@@ -122,6 +122,7 @@ SelectionTransformTool::update (int x, int y, BitMask, BitMask buttons)
   y_ = y;
 }
 
+
 void
 SelectionTransformTool::end (int x, int y, BitMask modifiers, BitMask buttons)
 {
@@ -132,6 +133,7 @@ SelectionTransformTool::end (int x, int y, BitMask modifiers, BitMask buttons)
   int dx = (x - x_);
   int dy = (y - y_);
   update(x, y, modifiers, buttons);
+  printf("this is selection transform tool\n");
   if (modifiers_ & CTRL)
   {
     boost::shared_ptr<TransformCommand> c(new TransformCommand(selection_ptr_,

@@ -132,6 +132,7 @@ class MainWindow : public QMainWindow
     void
     createSliders ();
 
+
     /// the cloud editor GL widget
     CloudEditorWidget *cloud_editor_widget_;
 
@@ -197,6 +198,12 @@ class MainWindow : public QMainWindow
 
     /// action for showing the statistics of the editor
     QAction *show_stat_action_;
+
+    ///edit by echo
+    ///
+    QAction *zoom_;
+    QAction *move;
+    ///end
 
     /// the file menu
     QMenu *file_menu_;

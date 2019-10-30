@@ -91,8 +91,9 @@ DISTFILES += \
     resources/select.png \
     resources/undo.png \
     resources/view.png \
-    resources/pceditor.icns
-
+    resources/pceditor.icns \
+    resources/缩放大.png \
+    resources/移动.png
 
 #Eigen
 INCLUDEPATH += /usr/include/eigen3
@@ -107,6 +108,7 @@ INCLUDEPATH += /usr/include/boost
 
 LIBS += /usr/lib/x86_64-linux-gnu/libboost_*.so
 
+INCLUDEPATH+=/home/echo/git-reponsitory/pcl_point_cloud_editor/include
 #PCL Header
 INCLUDEPATH += /usr/include/pcl-1.9
 
@@ -120,6 +122,7 @@ INCLUDEPATH+=/usr/include/qt5/QtOpenGL
 INCLUDEPATH+=/usr/include/GL
 
 LIBS+=/usr/lib/x86_64-linux-gnu/libGL*.so
+
 
 
 

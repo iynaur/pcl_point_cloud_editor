@@ -15,5 +15,7 @@
         <file>undo.png</file>
         <file>view.png</file>
         <file>pceditor.icns</file>
+        <file>缩放大.png</file>
+        <file>移动.png</file>
     </qresource>
 </RCC>

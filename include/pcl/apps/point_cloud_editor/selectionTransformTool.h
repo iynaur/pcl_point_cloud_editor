@@ -108,7 +108,6 @@ class SelectionTransformTool : public ToolInterface
     draw () const override
     {
     }
-    
   private:
     /// @brief Computes the modelview matrix for rotation.
     /// @param dx the distance between the x coordinates of the starting and

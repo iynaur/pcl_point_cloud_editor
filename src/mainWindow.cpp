@@ -251,6 +251,17 @@ MainWindow::createActions ()
   connect(show_stat_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(showStat()));
   show_stat_action_->setCheckable(false);
+
+  zoom_= new QAction(QIcon(icon_path+"缩放大.png"),
+                             tr("缩放"), action_group_);
+  connect(zoom_, SIGNAL(triggered()), cloud_editor_widget_,
+          SLOT(zoom()));
+  zoom_->setCheckable(true);
+  move= new QAction(QIcon(icon_path+"移动.png"),
+                             tr("移动"), action_group_);
+  connect(move, SIGNAL(triggered()), cloud_editor_widget_,
+          SLOT(move()));
+  move->setCheckable(true);
 }
 
 void
@@ -289,6 +300,8 @@ MainWindow::createMenus ()
 //  view_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   view_menu_ -> addAction(view_action_);
   view_menu_ -> addAction(show_stat_action_);
+  view_menu_->addAction(zoom_);
+  view_menu_->addAction(move);
 
   tool_menu_ = new QMenu(tr("&算法"), this);
 //  tool_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
@@ -312,10 +325,10 @@ MainWindow::createToolBars ()
 {
   createSpinBoxes();
   createSliders();
-  view_tool_bar_ = addToolBar(tr("文件"));
+  view_tool_bar_ = addToolBar(tr("file"));
   view_tool_bar_ -> addAction(open_action_);
   view_tool_bar_ -> addAction(save_action_);
-  view_tool_bar_ = addToolBar(tr("查看"));
+  view_tool_bar_ = addToolBar(tr("view"));
   view_tool_bar_ -> addAction(view_action_);
   view_tool_bar_ -> addAction(select_action_);
   view_tool_bar_ -> addAction(select_2D_action_);
@@ -329,7 +342,9 @@ MainWindow::createToolBars ()
   selectedPtSizeLabel -> setAttribute(Qt::WA_DeleteOnClose);
   view_tool_bar_ -> addWidget(selectedPtSizeLabel);
   view_tool_bar_ -> addWidget(selected_point_size_spin_box_);
-  edit_tool_bar_ = addToolBar(tr("编辑"));
+  view_tool_bar_->addAction(zoom_);
+  view_tool_bar_->addAction(move);
+  edit_tool_bar_ = addToolBar(tr("edit"));
   edit_tool_bar_ -> addAction(undo_action_);
   edit_tool_bar_ -> addAction(copy_action_);
   edit_tool_bar_ -> addAction(cut_action_);

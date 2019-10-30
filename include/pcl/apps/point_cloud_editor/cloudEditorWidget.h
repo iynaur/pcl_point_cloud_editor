@@ -187,6 +187,11 @@ class CloudEditorWidget : public QGLWidget
     /// @brief Turn on the dialog box showing the statistics of the cloud.
     void
     showStat ();
+    void
+    move();
+
+    void
+    zoom();
 
   protected:  
     /// initializes GL
