@@ -9,7 +9,7 @@ QT += opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = pcl_point_cloud_editor3
+TARGET = pcl_point_cloud_editor
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -121,7 +121,5 @@ INCLUDEPATH+=/usr/include/GL
 
 LIBS+=/usr/lib/x86_64-linux-gnu/libGL*.so
 
-#gtk
-LIBS+=/usr/lib/x86_64-linux-gnu/libgtk*.so
 
 

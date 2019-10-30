@@ -64,7 +64,7 @@ MainWindow::~MainWindow()
 void
 MainWindow::about ()
 {
-  QMessageBox::about(this, tr("Point Cloud Editor"),
+  QMessageBox::about(this, tr("点云编辑器"),
     tr("PCL 3D Editor\n\nAuthors: \n  Matthew Hielsberg (hielsber@tamu.edu) and\n"
        "  Yue Li (yli@cse.tamu.edu)\n  Texas A&M University\n\n"
        "This software was written as part of a collaboration with the "
@@ -74,48 +74,48 @@ MainWindow::about ()
 void
 MainWindow::help ()
 {
-  QMessageBox::about(this, tr("Point Cloud Editor"),
-                     tr("View Mode\n"
-                        "  Drag:\t\tRotate about origin\n"
-                        "  Alt Drag:\t\tTranslate Z\n"
-                        "  Ctrl Drag:\t\tPan\n"
-                        "  Shift Drag:\t\tZoom\n"
+  QMessageBox::about(this, tr("点云编辑器"),
+                     tr("视图模式\n"
+                        "  鼠标拖拽:\t关于坐标原点旋转\n"
+                        "  Alt+鼠标拖拽:\t平移Z\n"
+                        "  Ctrl+鼠标拖拽:\t缓慢缩放\n"
+                        "  Shift+鼠标拖拽:\t缩放\n"
                         "\n"
-                        "Selection Transform Mode\n"
-                        "  Drag:\t\tRotate about centeroid\n"
-                        "  Alt Drag:\t\tTranslate Z\n"
-                        "  Ctrl Drag:\t\tPan\n"
+                        "选择变换模式\n"
+                        "  鼠标拖拽:\t关于中心点旋转\n"
+                        "  Alt+鼠标拖拽:\t平移Z\n"
+                        "  Ctrl+鼠标拖拽:\t缓慢缩放\n"
                         "\n"
-                        "Mouse Picking\n"
-                        "  Left Click:\t\tSelect Point\n"
-                        "  Ctrl Left Click:\tDeselect Point\n"
-                        "  Shift Left Click:\tAppend to Selection\n"
+                        "鼠标点选模式\n"
+                        "  左键:\t\t选择点\n"
+                        "  Ctrl+左键 :\t取消选择\n"
+                        "  Shift+左键:\t附加选择\n"
                         "\n"
-                        "2D Picking (Rubberband)\n"
-                        "  Drag:\t\tSelect Region\n"
-                        "  Ctrl Drag:\t\tDeselect Region\n"
-                        "  Shift Drag:\t\tAppend to Selection\n"
+                        "2D选择模式 (Rubberband)\n"
+                        "  拖拽鼠标:\t\t选择选区\n"
+                        "  选择选区:\t\t取消选区\n"
+                        "  Shift+鼠标拖拽:\t附加选择\n"
                         "\n"
-                        "Shortcut Keys\n"
-                        "  1:\t\tColor Points White\n"
-                        "  2:\t\tUse ColorWheel X\n"
-                        "  3:\t\tUse ColorWheel Y\n"
-                        "  4:\t\tUse ColorWheel Z\n"
-                        "  5:\t\tUse RGB Color\n"
-                        "  Ctrl C:\t\tCopy Selection\n"
-                        "  Ctrl X:\t\tCut Selection\n"
-                        "  Ctrl V:\t\tPaste Selection\n"
-                        "  Ctrl Z:\t\tUndo\n"
-                        "  V:\t\tView Mode\n"
-                        "  T:\t\tSelection Transform Mode\n"
-                        "  E:\t\tPoint Selection Mode\n"
-                        "  S:\t\t2D Selection Mode\n"
-                        "  Del:\t\tDelete Selection\n"
-                        "  +:\t\tIncrease Point Size\n"
-                        "  -:\t\tDecrease Point Size\n"
-                        "  Ctrl +:\t\tInc. Selection Point Size\n"
-                        "  Ctrl -:\t\tDec. Selection Point Size\n"
-                        "  Esc:\t\tCancel Selection\n"
+                        "快捷键\n"
+                        "  1:\t\t变白\n"
+                        "  2:\t\t使用色环 X\n"
+                        "  3:\t\t使用色环 Y\n"
+                        "  4:\t\t使用色环 Z\n"
+                        "  5:\t\t使用RGB颜色\n"
+                        "  Ctrl C:\t\t复制\n"
+                        "  Ctrl X:\t\t剪切\n"
+                        "  Ctrl V:\t\t粘贴\n"
+                        "  Ctrl Z:\t\t撤销\n"
+                        "  V:\t\t视图模式\n"
+                        "  T:\t\t选择变换模式\n"
+                        "  E:\t\t选择模式\n"
+                        "  S:\t\t2D选择模式\n"
+                        "  Del:\t\t删除选区\n"
+                        "  +:\t\t放大所有点\n"
+                        "  -:\t\t缩小所有点\n"
+                        "  Ctrl +:\t放大所选点\n"
+                        "  Ctrl -:\t缩小所选点\n"
+                        "  Esc:\t\t取消选择\n"
                         ));
 }
 
@@ -128,7 +128,7 @@ MainWindow::initWindow ()
   createActions();
   createMenus();
   createToolBars();
-  setWindowTitle(tr("PCL 3D Editor (TAMU)"));
+  setWindowTitle(tr("PCL 3D 编辑器"));
   resize(window_width_, window_height_);
 }
 
