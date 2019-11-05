@@ -205,7 +205,7 @@ MainWindow::createActions ()
   transform_action_->setCheckable(true);
 
 
-  denoise_action_ = new QAction(tr("Denoise"), this);
+  denoise_action_ = new QAction(QString("降噪"), this);
   connect(denoise_action_, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(denoise()));
 

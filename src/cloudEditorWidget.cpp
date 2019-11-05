@@ -298,7 +298,7 @@ CloudEditorWidget::transform ()
     new SelectionTransformTool(selection_ptr_, cloud_ptr_, command_queue_ptr_));
   update();
 }
-
+//edit by echo
 void
 CloudEditorWidget::zoom()
 {
@@ -319,6 +319,7 @@ CloudEditorWidget::move()
     tool_ptr_->move();
 }
 
+//end
 
 void
 CloudEditorWidget::denoise ()

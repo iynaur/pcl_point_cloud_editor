@@ -45,24 +45,24 @@ DenoiseParameterForm::DenoiseParameterForm () : ok_(false)
   mean_K_line_ = new QLineEdit;
   std_dev_mul_thresh_line_ = new QLineEdit;
   button_box_ = new QDialogButtonBox;
-  button_box_->addButton(tr("Cancel"),
+  button_box_->addButton(tr("取消"),
                          QDialogButtonBox::RejectRole);
-  button_box_->addButton(tr("OK"),
+  button_box_->addButton(tr("好"),
                          QDialogButtonBox::AcceptRole);
   connect(button_box_, SIGNAL(accepted()),
           this, SLOT(accept()));
   connect(button_box_, SIGNAL(rejected()),
           this, SLOT(reject()));
   layout_ = new QFormLayout;
-  layout_->addRow(tr("&MeanK:"), mean_K_line_);
-  layout_->addRow(tr("&Standard deviation threshold:"),
+  layout_->addRow(tr("&邻近点数:"), mean_K_line_);
+  layout_->addRow(tr("&阀值:"),
                  std_dev_mul_thresh_line_);
 
   main_layout_ = new QVBoxLayout;
   main_layout_->addLayout(layout_);
   main_layout_->addWidget(button_box_);
   setLayout(main_layout_);
-  setWindowTitle(tr("Denoise Filter"));
+  setWindowTitle(tr("降噪滤波器"));
 }
 
 DenoiseParameterForm::~DenoiseParameterForm ()
