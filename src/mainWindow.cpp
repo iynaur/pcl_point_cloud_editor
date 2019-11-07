@@ -274,6 +274,7 @@ MainWindow::createMenus ()
   edit_menu_ -> addSeparator();
   edit_menu_ -> addAction(transform_action_);
 
+
   select_menu_ = new QMenu(QString("&选择"), this);
  // select_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   select_menu_ -> addAction(select_action_);

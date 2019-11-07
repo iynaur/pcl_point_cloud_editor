@@ -203,7 +203,7 @@ class MainWindow : public QMainWindow
     ///
     QAction *zoom_;
     QAction *move;
-    QAction *statisticaloutlierremoval;
+    QAction *insertPoint;
     ///end
 
     /// the file menu

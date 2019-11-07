@@ -81,15 +81,10 @@ CloudTransformTool::update (int x, int y, BitMask modifiers, BitMask buttons)
   int dy = (y - y_);
   if (dx == 0 && dy == 0)
     return;
- /* printf(isMove ? "isMove true" : "isMove false");
-  printf("\n");
-  printf(isScale ? "isscale true" : "isscale false");
-  printf("\n");*/
+
   trackball_.update(x, y);
   if (isMove)
     getTranslateMatrix(dx, dy, transform);
-  else if (isMove)
-    getZTranslateMatrix(dy, transform);
   else if (isScale)
     getScaleMatrix(dy, transform);
   else
