@@ -46,6 +46,7 @@
 #include <pcl/apps/point_cloud_editor/denoiseParameterForm.h>
 #include <pcl/apps/point_cloud_editor/statisticsDialog.h>
 #include <pcl/apps/point_cloud_editor/toolInterface.h>
+#include <pcl/apps/point_cloud_editor/displayDepthValue.h>
 
 #include <QGLWidget>
 
@@ -71,6 +72,12 @@ class CloudEditorWidget : public QGLWidget
     void
     loadFile(const std::string &filename);
 
+    void
+    initTimer();
+
+    void
+    displayZValue(bool isChecked);
+
   public Q_SLOTS:
     /// @brief Loads a new cloud.
     void
@@ -79,6 +86,10 @@ class CloudEditorWidget : public QGLWidget
     /// @brief Saves a cloud to a .pcd file. The current format is ASCII.
     void
     save ();
+
+
+    void
+    onMouseStopMove();
 
     /// @brief Toggles the blend mode used to render the non-selected points
     void
@@ -193,6 +204,7 @@ class CloudEditorWidget : public QGLWidget
     void
     zoom();
 
+
   protected:  
     /// initializes GL
     void
@@ -218,9 +230,14 @@ class CloudEditorWidget : public QGLWidget
     void
     mouseReleaseEvent (QMouseEvent *event) override;
 
+
+
+
     /// key press control
     void
     keyPressEvent (QKeyEvent *event) override;
+
+    QTimer mTimer;
 
   private:
     
@@ -287,6 +304,8 @@ class CloudEditorWidget : public QGLWidget
     /// a pointer to the command queue object
     CommandQueuePtr command_queue_ptr_;
 
+    boost::shared_ptr<DisplayDepthValue> displayDepthValue;
+
     /// The camera field of view
     double cam_fov_;
 
@@ -317,5 +336,7 @@ class CloudEditorWidget : public QGLWidget
     /// a dialog displaying the statistics of the cloud editor
     StatisticsDialog stat_dialog_;
 
-
+    int stop_x;
+    int stop_y;
+    QPointF screen_pos;
 };

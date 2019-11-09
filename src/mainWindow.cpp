@@ -72,6 +72,12 @@ MainWindow::about ()
 }
 
 void
+MainWindow::display_z_value_fun()
+{
+    cloud_editor_widget_->displayZValue(display_z_value->isChecked());
+}
+
+void
 MainWindow::help ()
 {
   QMessageBox::about(this, tr("点云编辑器"),
@@ -185,6 +191,12 @@ MainWindow::createActions ()
   toggle_blend_action_->setCheckable(true);
   toggle_blend_action_->setChecked(false);
 
+  display_z_value=new QAction(QString("显示深度值"),this);
+  connect(display_z_value,SIGNAL(triggered()),this,
+          SLOT(display_z_value_fun()));
+  display_z_value->setCheckable(true);
+  display_z_value->setChecked(false);
+
   view_action_ = new QAction(QIcon(icon_path+"view.png"), QString("查看"),
                              action_group_);
   connect(view_action_, SIGNAL(triggered()), cloud_editor_widget_,
@@ -250,6 +262,7 @@ MainWindow::createActions ()
   connect(move, SIGNAL(triggered()), cloud_editor_widget_,
           SLOT(move()));
   move->setCheckable(true);
+
 }
 
 void
@@ -284,6 +297,7 @@ MainWindow::createMenus ()
   display_menu_ = new QMenu(QString("&显示"), this);
 //  display_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   display_menu_ -> addAction(toggle_blend_action_);
+  display_menu_->addAction(display_z_value);
 
   view_menu_ = new QMenu(QString("&查看"), this);
 //  view_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
@@ -291,7 +305,6 @@ MainWindow::createMenus ()
   view_menu_ -> addAction(show_stat_action_);
   view_menu_->addAction(zoom_);
   view_menu_->addAction(move);
-
   tool_menu_ = new QMenu(QString("&算法"), this);
 //  tool_menu_ -> setAttribute(Qt::WA_DeleteOnClose);
   tool_menu_ -> addAction(denoise_action_);

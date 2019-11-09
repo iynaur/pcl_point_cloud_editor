@@ -45,7 +45,8 @@ SOURCES += \
     src/statistics.cpp \
     src/statisticsDialog.cpp \
     src/trackball.cpp \
-    src/transformCommand.cpp
+    src/transformCommand.cpp \
+    src/displayDepthValue.cpp
 
 HEADERS += \
     include/pcl/apps/point_cloud_editor/cloud.h \
@@ -71,7 +72,8 @@ HEADERS += \
     include/pcl/apps/point_cloud_editor/statisticsDialog.h \
     include/pcl/apps/point_cloud_editor/toolInterface.h \
     include/pcl/apps/point_cloud_editor/trackball.h \
-    include/pcl/apps/point_cloud_editor/transformCommand.h
+    include/pcl/apps/point_cloud_editor/transformCommand.h \
+    include/pcl/apps/point_cloud_editor/displayDepthValue.h
 
 RESOURCES += \
     resources/pceditor_resources.qrc

@@ -79,8 +79,10 @@ CloudEditorWidget::CloudEditorWidget (QWidget *parent)
 {
   setFocusPolicy(Qt::StrongFocus);
   command_queue_ptr_ = CommandQueuePtr(new CommandQueue());
+  qDebug("新建cloudwidget");
   initFileLoadMap();
   initKeyMap();
+  initTimer();
 }
 
 CloudEditorWidget::~CloudEditorWidget ()
@@ -142,6 +144,7 @@ CloudEditorWidget::save ()
     try
     {
       pcl::io::savePCDFile(file_path_std, cloud_ptr_->getInternalCloud());
+
     }
     catch (...)
     {
@@ -311,7 +314,6 @@ CloudEditorWidget::zoom()
 void
 CloudEditorWidget::move()
 {
-
     if (!cloud_ptr_)
       return;
     tool_ptr_ = boost::shared_ptr<CloudTransformTool>(
@@ -319,7 +321,35 @@ CloudEditorWidget::move()
     tool_ptr_->move();
 }
 
+void
+CloudEditorWidget::onMouseStopMove()
+{
+    qDebug("鼠标停止运动!!!!");
+    if(displayDepthValue){
+        displayDepthValue->getDepthValue(stop_x,stop_y,screen_pos);
+        qDebug()<<"执行了该事件!!!\n";
+}}
+
+void
+CloudEditorWidget::displayZValue(bool isChecked)
+{
+    if(!cloud_ptr_)
+        return;
+    if(isChecked){
+        setMouseTracking(true);//如果被选中 开始计时
+        displayDepthValue=boost::shared_ptr<DisplayDepthValue>(new DisplayDepthValue(cloud_ptr_));
+        qDebug("哎呀 被选中了\n");
+    }
+    else
+    {
+        qDebug("没有被选中!\n");
+        displayDepthValue.reset();
+        setMouseTracking(false);
+    }
+}
 //end
+
+
 
 void
 CloudEditorWidget::denoise ()
@@ -522,12 +552,22 @@ CloudEditorWidget::mousePressEvent (QMouseEvent *event)
 void
 CloudEditorWidget::mouseMoveEvent (QMouseEvent *event)
 {
-  if (!tool_ptr_)
-    return;
+  //if (!tool_ptr_&&!displayDepthValue)
+   // return;
+  if(tool_ptr_){
   tool_ptr_ -> update(event -> x(), event -> y(),
                       event -> modifiers(), event -> buttons());
+
+  }
+  mTimer.start(500);
+
+  stop_x=event->x();
+  stop_y=event->y();
+  screen_pos=event->screenPos();
   update();
+
 }
+
 
 void
 CloudEditorWidget::mouseReleaseEvent (QMouseEvent *event)
@@ -537,6 +577,15 @@ CloudEditorWidget::mouseReleaseEvent (QMouseEvent *event)
   tool_ptr_ -> end(event -> x(), event -> y(),
                    event -> modifiers(), event -> button());
   update();
+}
+
+void
+CloudEditorWidget::initTimer()
+{
+    qDebug("初始化计时器!\n");
+     mTimer.setSingleShot(true);
+     connect(&mTimer, SIGNAL(timeout()),this,
+             SLOT(onMouseStopMove()));
 }
 
 void

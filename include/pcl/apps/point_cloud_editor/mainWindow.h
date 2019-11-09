@@ -99,12 +99,19 @@ class MainWindow : public QMainWindow
     int
     getSelectedSpinBoxValue ();
 
+
+    void
+    initTimer();
+
   private Q_SLOTS:
     void
     about ();
 
     void
     help ();
+
+    void
+    display_z_value_fun();
 
   private:
     /// Initialization function.  This handles the initialization of the widget,
@@ -132,6 +139,8 @@ class MainWindow : public QMainWindow
     void
     createSliders ();
 
+
+    QTimer timer;
 
     /// the cloud editor GL widget
     CloudEditorWidget *cloud_editor_widget_;
@@ -203,7 +212,7 @@ class MainWindow : public QMainWindow
     ///
     QAction *zoom_;
     QAction *move;
-    QAction *insertPoint;
+    QAction *display_z_value;
     ///end
 
     /// the file menu
