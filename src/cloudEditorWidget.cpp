@@ -61,7 +61,6 @@
 #include <pcl/apps/point_cloud_editor/selection.h>
 #include <pcl/apps/point_cloud_editor/select1DTool.h>
 #include <pcl/apps/point_cloud_editor/select2DTool.h>
-//#include <pcl/apps/point_cloud_editor/select3DTool.h>
 #include <pcl/apps/point_cloud_editor/copyBuffer.h>
 #include <pcl/apps/point_cloud_editor/copyCommand.h>
 #include <pcl/apps/point_cloud_editor/pasteCommand.h>
@@ -79,7 +78,6 @@ CloudEditorWidget::CloudEditorWidget (QWidget *parent)
 {
   setFocusPolicy(Qt::StrongFocus);
   command_queue_ptr_ = CommandQueuePtr(new CommandQueue());
-  qDebug("新建cloudwidget");
   initFileLoadMap();
   initKeyMap();
   initTimer();
@@ -324,11 +322,8 @@ CloudEditorWidget::move()
 void
 CloudEditorWidget::onMouseStopMove()
 {
-    qDebug("鼠标停止运动!!!!");
-    if(displayDepthValue){
-        displayDepthValue->getDepthValue(stop_x,stop_y,screen_pos);
-        qDebug()<<"执行了该事件!!!\n";
-}}
+        displayDepthValue->getDepthValue(stop_x,stop_y,screen_pos,converter);
+}
 
 void
 CloudEditorWidget::displayZValue(bool isChecked)
@@ -337,7 +332,7 @@ CloudEditorWidget::displayZValue(bool isChecked)
         return;
     if(isChecked){
         setMouseTracking(true);//如果被选中 开始计时
-        displayDepthValue=boost::shared_ptr<DisplayDepthValue>(new DisplayDepthValue(cloud_ptr_));
+        displayDepthValue=boost::shared_ptr<DisplayDepthValue>(new DisplayDepthValue());
         qDebug("哎呀 被选中了\n");
     }
     else
@@ -546,6 +541,12 @@ CloudEditorWidget::mousePressEvent (QMouseEvent *event)
     return;
   tool_ptr_ -> start(event -> x(), event -> y(),
                      event -> modifiers(), event -> buttons());
+
+  if(ranging)
+  {
+      qDebug("按住 x:%d y:%d",event->x(),event->y());
+      ranging->onMousePressed(event->x(),event->y());
+  }
   update();
 }
 
@@ -559,11 +560,14 @@ CloudEditorWidget::mouseMoveEvent (QMouseEvent *event)
                       event -> modifiers(), event -> buttons());
 
   }
-  mTimer.start(500);
 
-  stop_x=event->x();
-  stop_y=event->y();
-  screen_pos=event->screenPos();
+  if(displayDepthValue)
+  {
+    mTimer.start(500);
+    stop_x=event->x();
+    stop_y=event->y();
+    screen_pos=event->screenPos();
+  }
   update();
 
 }
@@ -576,6 +580,12 @@ CloudEditorWidget::mouseReleaseEvent (QMouseEvent *event)
     return;
   tool_ptr_ -> end(event -> x(), event -> y(),
                    event -> modifiers(), event -> button());
+
+  if(ranging)
+  {
+      qDebug("放开 x:%d y:%d",event->x(),event->y());
+      ranging->onMouseReleased(event->x(),event->y(),event->screenPos(),converter);
+  }
   update();
 }
 
@@ -618,7 +628,9 @@ CloudEditorWidget::loadFilePCD(const std::string &filename)
   cloud_ptr_->setHighlightPointSize(selected_point_size_);
   tool_ptr_ =
     boost::shared_ptr<CloudTransformTool>(new CloudTransformTool(cloud_ptr_));
-
+  converter=boost::shared_ptr<Converter>(new Converter(cloud_ptr_));
+  rangingDialog=boost::shared_ptr<RangingDialog>(new RangingDialog(this));
+  ranging=boost::shared_ptr<Ranging>(new Ranging(rangingDialog));
   if (isColored(filename))
   {
     swapRBValues();

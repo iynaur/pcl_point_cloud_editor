@@ -47,6 +47,9 @@
 #include <pcl/apps/point_cloud_editor/statisticsDialog.h>
 #include <pcl/apps/point_cloud_editor/toolInterface.h>
 #include <pcl/apps/point_cloud_editor/displayDepthValue.h>
+#include <pcl/apps/point_cloud_editor/screenpointconverter.h>
+#include <pcl/apps/point_cloud_editor/ranging.h>
+#include <pcl/apps/point_cloud_editor/rangingdialog.h>
 
 #include <QGLWidget>
 
@@ -87,9 +90,10 @@ class CloudEditorWidget : public QGLWidget
     void
     save ();
 
-
+    //鼠标停止事件
     void
     onMouseStopMove();
+
 
     /// @brief Toggles the blend mode used to render the non-selected points
     void
@@ -239,6 +243,8 @@ class CloudEditorWidget : public QGLWidget
 
     QTimer mTimer;
 
+    boost::shared_ptr<Converter> converter;
+
   private:
     
     /// @brief Attempts to load a pcd file
@@ -305,6 +311,10 @@ class CloudEditorWidget : public QGLWidget
     CommandQueuePtr command_queue_ptr_;
 
     boost::shared_ptr<DisplayDepthValue> displayDepthValue;
+
+    boost::shared_ptr<Ranging> ranging;
+
+    boost::shared_ptr<RangingDialog> rangingDialog;
 
     /// The camera field of view
     double cam_fov_;

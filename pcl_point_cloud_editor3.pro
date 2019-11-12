@@ -46,7 +46,10 @@ SOURCES += \
     src/statisticsDialog.cpp \
     src/trackball.cpp \
     src/transformCommand.cpp \
-    src/displayDepthValue.cpp
+    src/displayDepthValue.cpp \
+    src/ranging.cpp \
+    src/screenpointconverter.cpp \
+    src/rangingdialog.cpp
 
 HEADERS += \
     include/pcl/apps/point_cloud_editor/cloud.h \
@@ -73,7 +76,11 @@ HEADERS += \
     include/pcl/apps/point_cloud_editor/toolInterface.h \
     include/pcl/apps/point_cloud_editor/trackball.h \
     include/pcl/apps/point_cloud_editor/transformCommand.h \
-    include/pcl/apps/point_cloud_editor/displayDepthValue.h
+    include/pcl/apps/point_cloud_editor/displayDepthValue.h \
+    include/pcl/apps/point_cloud_editor/ranging.h \
+    include/pcl/apps/point_cloud_editor/screenpointconverter.h \
+    include/pcl/apps/point_cloud_editor/rangingdialog.h \
+    include/pcl/apps/point_cloud_editor/rangingdialog.h
 
 RESOURCES += \
     resources/pceditor_resources.qrc

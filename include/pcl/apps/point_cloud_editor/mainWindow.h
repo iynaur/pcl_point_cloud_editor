@@ -99,7 +99,6 @@ class MainWindow : public QMainWindow
     int
     getSelectedSpinBoxValue ();
 
-
     void
     initTimer();
 
