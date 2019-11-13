@@ -629,8 +629,7 @@ CloudEditorWidget::loadFilePCD(const std::string &filename)
   tool_ptr_ =
     boost::shared_ptr<CloudTransformTool>(new CloudTransformTool(cloud_ptr_));
   converter=boost::shared_ptr<Converter>(new Converter(cloud_ptr_));
-  rangingDialog=boost::shared_ptr<RangingDialog>(new RangingDialog(this));
-  ranging=boost::shared_ptr<Ranging>(new Ranging(rangingDialog));
+  ranging=boost::shared_ptr<Ranging>(new Ranging());
   if (isColored(filename))
   {
     swapRBValues();
