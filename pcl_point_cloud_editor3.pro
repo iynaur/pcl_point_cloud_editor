@@ -80,7 +80,6 @@ HEADERS += \
     include/pcl/apps/point_cloud_editor/ranging.h \
     include/pcl/apps/point_cloud_editor/screenpointconverter.h \
     include/pcl/apps/point_cloud_editor/rangingdialog.h \
-    include/pcl/apps/point_cloud_editor/rangingdialog.h
 
 RESOURCES += \
     resources/pceditor_resources.qrc

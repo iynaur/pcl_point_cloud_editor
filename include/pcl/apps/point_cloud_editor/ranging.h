@@ -14,7 +14,7 @@
 class Ranging
 {
 public:
-    Ranging(boost::shared_ptr<RangingDialog> dialog);
+    Ranging();
     ~Ranging();
     //TODO2: 根据空间坐标点计算两个点的距离
     float getDistanceOfPoints();
@@ -28,10 +28,11 @@ private:
     Point3D point1;
     Point3D point2;
     float distance;
-    boost::shared_ptr<RangingDialog> dialog;
     QString point1str;
     QString point2str;
     QString resultstr;
     int final_x;
     int final_y;
+
+    void setHighlightColor(Point3D &p);
 };

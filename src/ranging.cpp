@@ -5,9 +5,8 @@
 #include <QWidget>
 
 
-Ranging::Ranging(boost::shared_ptr<RangingDialog> m_dialog)
+Ranging::Ranging()
 {
-    dialog=m_dialog;
 }
 
 Ranging::~Ranging()
@@ -32,6 +31,7 @@ Ranging::getPoint3D(int x, int y,const QPointF screen_pos,boost::shared_ptr<Conv
             str1=QString("第一个点(");
             point1str.append(str1);
             point1str.append(str2);
+           // setHighlightColor(point1);
         }
         else
         {
@@ -39,6 +39,7 @@ Ranging::getPoint3D(int x, int y,const QPointF screen_pos,boost::shared_ptr<Conv
             str1=QString("第二个点(");
             point2str.append(str1);
             point2str.append(str2);
+            //setHighlightColor(point2);
 
         }
 
@@ -90,7 +91,7 @@ Ranging::onMouseReleased(int x,int y,const QPointF screen_pos,boost::shared_ptr<
         //TODO 显示距离
         qDebug("两点之间的距离为:%f",getDistanceOfPoints());
         resultstr.append(QString("距离为:")).append(QString::number(distance));
-        dialog->ShowDialog(point1str,point2str,resultstr);
+        QToolTip::showText(screen_pos.toPoint(),resultstr);
         reset();
     }
 }
@@ -101,5 +102,23 @@ void Ranging::onMousePressed(int x,int y)
     final_y=y;
 }
 
+void Ranging::setHighlightColor(Point3D &p)
+{
+    glLoadIdentity();
+
+     //set size to 1 for a group of points
+     glPointSize(10);
+
+     //group #1 starts here
+     glBegin(GL_POINTS);
+
+        //color of group #1 is white
+        glColor3f(0,1,0);
+
+      //  for(int a=0; a<x; a++)
+        //    for(int b=0; b<y; b++)
+     glVertex3f(p.x,p.y,p.z);   //location of points
+     glEnd();
+}
 
 
