@@ -7,6 +7,8 @@
 QT       += core gui
 QT += opengl
 
+CONFIG += c++11
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = pcl_point_cloud_editor
@@ -103,6 +105,7 @@ DISTFILES += \
     resources/缩放大.png \
     resources/移动.png
 
+INCLUDEPATH += include
 #Eigen
 INCLUDEPATH += /usr/include/eigen3
 
@@ -118,10 +121,10 @@ LIBS += /usr/lib/x86_64-linux-gnu/libboost_*.so
 
 INCLUDEPATH+=/home/echo/git-reponsitory/pcl_point_cloud_editor/include
 #PCL Header
-INCLUDEPATH += /usr/include/pcl-1.9
+INCLUDEPATH += /usr/include/pcl-1.7
 
 #PCL Lib
-LIBS        += /usr/lib/libpcl_*.so
+LIBS        += /usr/lib/x86_64-linux-gnu/libpcl_*.so
 
 INCLUDEPATH+=/usr/include/qt5/QtOpenGL
 
