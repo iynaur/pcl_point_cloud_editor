@@ -121,7 +121,7 @@ LIBS += /usr/lib/x86_64-linux-gnu/libboost_*.so
 
 INCLUDEPATH+=/home/echo/git-reponsitory/pcl_point_cloud_editor/include
 #PCL Header
-INCLUDEPATH += /usr/include/pcl-1.7
+INCLUDEPATH += /usr/local/include/pcl-1.8
 
 #PCL Lib
 LIBS        += /usr/lib/x86_64-linux-gnu/libpcl_*.so
